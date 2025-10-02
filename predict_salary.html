@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Predict Employee Salary (ML Model)</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Experience (Years)</label>
+        <input type="number" class="form-control" name="experience" min="0" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Education</label>
+        <select class="form-select" name="education" required>
+            <option value="">Select</option>
+            <option value="High School">High School</option>
+            <option value="Bachelor">Bachelor</option>
+            <option value="Master">Master</option>
+            <option value="PhD">PhD</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Department</label>
+        <select class="form-select" name="department" required>
+            <option value="">Select</option>
+            <option value="HR">HR</option>
+            <option value="IT">IT</option>
+            <option value="Finance">Finance</option>
+            <option value="Marketing">Marketing</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Predict Salary</button>
+</form>
+
+{% if prediction %}
+    <div class="alert alert-info mt-3">
+        <h4>Predicted Salary: ${{ prediction }}</h4>
+        <p>(Based on Linear Regression model trained on sample data)</p>
+    </div>
+{% endif %}
+{% endblock %}

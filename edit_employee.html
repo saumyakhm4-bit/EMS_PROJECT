@@ -1,0 +1,44 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Edit Employee</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" value="{{ employee.name }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" name="email" value="{{ employee.email }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Department</label>
+        <select class="form-select" name="department" required>
+            <option value="HR" {% if employee.department == 'HR' %}selected{% endif %}>HR</option>
+            <option value="IT" {% if employee.department == 'IT' %}selected{% endif %}>IT</option>
+            <option value="Finance" {% if employee.department == 'Finance' %}selected{% endif %}>Finance</option>
+            <option value="Marketing" {% if employee.department == 'Marketing' %}selected{% endif %}>Marketing</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Experience (Years)</label>
+        <input type="number" class="form-control" name="experience" value="{{ employee.experience }}" min="0" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Education</label>
+        <select class="form-select" name="education" required>
+            <option value="High School" {% if employee.education == 'High School' %}selected{% endif %}>High School</option>
+            <option value="Bachelor" {% if employee.education == 'Bachelor' %}selected{% endif %}>Bachelor</option>
+            <option value="Master" {% if employee.education == 'Master' %}selected{% endif %}>Master</option>
+            <option value="PhD" {% if employee.education == 'PhD' %}selected{% endif %}>PhD</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Salary ($)</label>
+        <input type="number" step="0.01" class="form-control" name="salary" value="{{ employee.salary }}" required>
+    </div>
+    <button type="submit" class="btn btn-success">Update Employee</button>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

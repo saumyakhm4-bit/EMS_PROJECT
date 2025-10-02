@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Employee List</h1>
+<a href="{{ url_for('add_employee') }}" class="btn btn-primary mb-3">Add New Employee</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Experience (Years)</th>
+            <th>Education</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.department }}</td>
+            <td>{{ employee.experience }}</td>
+            <td>{{ employee.education }}</td>
+            <td>${{ "%.2f"|format(employee.salary) }}</td>
+            <td>
+                <a href="{{ url_for('edit_employee', id=employee.id) }}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{{ url_for('delete_employee', id=employee.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
